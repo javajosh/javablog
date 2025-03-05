@@ -7,8 +7,8 @@ plugins {
   // id('org.cyclonedx.bom') version('2.2.0')
 }
 
-group('com.javajosh')
-version('0.0.1-SNAPSHOT')
+group = 'com.javajosh'
+version = '0.0.1-SNAPSHOT'
 
 java {
   toolchain {
@@ -33,7 +33,9 @@ spotless {
 tasks.register('installGitHooks', Copy) {
   from(file("$rootDir/.githooks/pre-commit"))
   into(file("$rootDir/.git/hooks"))
-  fileMode(0755)
+  filePermissions{
+    unix("rwxr-xr-x")
+  }
 }
 
 build.dependsOn(installGitHooks)
