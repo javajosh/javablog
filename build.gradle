@@ -1,13 +1,14 @@
 plugins {
-  id 'java'
-  id 'org.springframework.boot' version '3.4.3'
-  id 'io.spring.dependency-management' version '1.1.7'
-  id 'com.diffplug.spotless' version '7.0.2'
-  id 'org.cyclonedx.bom' version '2.2.0'
+  id('java')
+  id('org.springframework.boot') version('3.4.3')
+  id('io.spring.dependency-management') version('1.1.7')
+  id('com.diffplug.spotless') version('7.0.2')
+  // SBOM support - don't run it until you need it
+  // id('org.cyclonedx.bom') version('2.2.0')
 }
 
-group = 'com.javajosh'
-version = '0.0.1-SNAPSHOT'
+group('com.javajosh')
+version('0.0.1-SNAPSHOT')
 
 java {
   toolchain {
@@ -16,8 +17,8 @@ java {
 }
 
 spotless {
-  format 'misc', {
-    target '*.gradle', '.gitattributes', '.gitignore'
+  format('misc') {
+    target('*.gradle', '.gitattributes', '.gitignore')
     trimTrailingWhitespace()
     leadingTabsToSpaces(2)
     endWithNewline()
@@ -25,35 +26,34 @@ spotless {
   java {
     googleJavaFormat()
     formatAnnotations()
-//    licenseHeader '/* (C)$YEAR */'
+//		licenseHeader('/* (C)$YEAR */')
   }
 }
 
 tasks.register('installGitHooks', Copy) {
-  from file("$rootDir/.githooks/pre-commit")
-  into file("$rootDir/.git/hooks")
-  fileMode 0755
+  from(file("$rootDir/.githooks/pre-commit"))
+  into(file("$rootDir/.git/hooks"))
+  fileMode(0755)
 }
 
-build.dependsOn installGitHooks
-
+build.dependsOn(installGitHooks)
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  implementation 'org.springframework.boot:spring-boot-starter-actuator'
-  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-  implementation 'org.springframework.boot:spring-boot-starter-quartz'
-  implementation 'org.springframework.boot:spring-boot-starter-web'
-  // implementation 'org.springframework.boot:spring-boot-starter-websocket'
-  // implementation 'io.github.wimdeblauwe:htmx-spring-boot:4.0.1'
-  // implementation 'org.liquibase:liquibase-core'
-  // runtimeOnly 'org.postgresql:postgresql'
-  runtimeOnly 'com.h2database:h2'
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  implementation('org.springframework.boot:spring-boot-starter-actuator')
+  implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+  implementation('org.springframework.boot:spring-boot-starter-quartz')
+  implementation('org.springframework.boot:spring-boot-starter-web')
+  // implementation('org.springframework.boot:spring-boot-starter-websocket')
+  // implementation('io.github.wimdeblauwe:htmx-spring-boot:4.0.1')
+  // implementation('org.liquibase:liquibase-core')
+  // runtimeOnly('org.postgresql:postgresql')
+  runtimeOnly('com.h2database:h2')
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 }
 
 tasks.named('test') {
