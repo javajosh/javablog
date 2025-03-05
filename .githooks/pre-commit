@@ -1,0 +1,16 @@
+#!/bin/bash
+# set -eo pipefail
+
+echo "This is Java Home $JAVA_HOME and which Java $(which java)"
+# export JAVA_HOME="$(which java)"
+# Capture staged Java/Kotlin files
+FORMATTABLE_FILES=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.java$|\.kt$|\.kts$')
+
+#if [[ -n "$FORMATTABLE_FILES" ]]; then
+#  # Execute Spotless validation
+#  ./gradlew :spotlessCheck || {
+#    echo "Commit blocked: Formatting violations detected"
+#    echo "Run './gradlew :spotlessApply' to resolve"
+#    exit 1
+#  }
+#fi

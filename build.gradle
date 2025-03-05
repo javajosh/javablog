@@ -29,6 +29,15 @@ spotless {
   }
 }
 
+tasks.register('installGitHooks', Copy) {
+  from file("$rootDir/.githooks/pre-commit")
+  into file("$rootDir/.git/hooks")
+  fileMode 0755
+}
+
+build.dependsOn installGitHooks
+
+
 repositories {
   mavenCentral()
 }
