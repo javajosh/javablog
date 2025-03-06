@@ -47,13 +47,16 @@ repositories {
 dependencies {
   implementation('org.springframework.boot:spring-boot-starter-actuator')
   implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-  implementation('org.springframework.boot:spring-boot-starter-quartz')
+  // implementation('org.springframework.boot:spring-boot-starter-quartz')
   implementation('org.springframework.boot:spring-boot-starter-web')
   // implementation('org.springframework.boot:spring-boot-starter-websocket')
   // implementation('io.github.wimdeblauwe:htmx-spring-boot:4.0.1')
-  // implementation('org.liquibase:liquibase-core')
-  // runtimeOnly('org.postgresql:postgresql')
+  implementation('org.flywaydb:flyway-core')
+  //  implementation('org.flywaydb:flyway-database-postgres')
+
   runtimeOnly('com.h2database:h2')
+  // runtimeOnly('org.postgresql:postgresql')
+
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 }
