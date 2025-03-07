@@ -12,6 +12,6 @@ public class JavablogApplication {
 
   public static void main(String[] args) {
     log.info("JavablogApplication started");
-    SpringApplication.run(JavablogApplication.class, args);
+    var ctx = SpringApplication.run(JavablogApplication.class, args);
   }
 }
